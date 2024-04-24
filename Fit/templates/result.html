@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Allocation Result</title>
+    <style>
+        .block-container {
+            white-space: nowrap; /* Prevent blocks from wrapping to the next line */
+        }
+        .block-wrapper {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        .block {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        .process-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .block-size {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Memory Allocation Result</h1>
+    <div class="block-container">
+        {% for block in allocation_info %}
+            <div class="block-wrapper">
+                <div class="block" style="background-color: {{ block_colors[loop.index0] }};">
+                    <div class="process-text">{{ block[2] }}</div>
+                </div>
+                <div class="block-size">{{ block_sizes[loop.index0] }}</div> <!-- Display block size -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
