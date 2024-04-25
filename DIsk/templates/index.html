@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disk Scheduling Simulation</title>
+</head>
+<body>
+    <h1>Disk Scheduling Simulation</h1>
+    <form action="/result" method="post">
+        <label for="initial_head_position">Initial Head Position:</label>
+        <input type="number" name="initial_head_position" id="initial_head_position" required><br><br>
+        <label for="request_queue">Request Queue (space-separated):</label>
+        <input type="text" name="request_queue" id="request_queue" required><br><br>
+        <label for="direction">Direction (left/right):</label>
+        <input type="text" name="direction" id="direction" required><br><br>
+        <input type="submit" value="Simulate">
+    </form>
+</body>
+</html>
+
