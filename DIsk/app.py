@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request
-from matplotlib import pyplot as plt
 from Disk import DiskScheduler, plot_seek_sequence
 
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -24,8 +23,13 @@ def result():
     results["LOOK"] = scheduler.look(direction)
     results["C-LOOK"] = scheduler.c_look(direction)
 
-    return render_template('result.html', results=results)
+    images = {}
+    for algorithm, (seek_operations, total_distance, seek_sequence) in results.items():
+        image_path = plot_seek_sequence(algorithm, seek_sequence, total_distance)
+        images[algorithm] = image_path
+
+    return render_template('result.html', results=results, images=images)
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 8000)
-
+    app.run(debug=True)
+    

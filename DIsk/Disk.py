@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt
+import os
 
 class DiskScheduler:
     def __init__(self, initial_head_position, request_queue):
@@ -123,31 +124,20 @@ def plot_seek_sequence(algorithm, seek_sequence, total_distance):
     plt.xlabel("Cylinder")
     plt.ylabel("Request")
     plt.text(172.5, -8.85, f"Total distance traveled: {total_distance} cylinders", horizontalalignment='center', verticalalignment='center', fontsize=12)
-    plt.show()
+
+    # Annotate only the x-coordinate of each point with a slight offset
+    for i, x in enumerate(seek_sequence):
+        plt.text(x, i, f"{x}", fontsize=8, ha='left', va='center', rotation=0, color='blue', bbox=dict(facecolor='white', edgecolor='white', boxstyle='round,pad=0.2'))
+
+    # Invert the y-axis
+    plt.gca().invert_yaxis()
+
+    # Save the image to the static folder
+    image_path = os.path.join('static', f'{algorithm}_seek_sequence.png')
+    plt.savefig(image_path)
+    plt.close()
+    
+    return image_path
 
 
-# Example usage
-initial_head_position = int(input("Enter initial head position: "))
-request_queue = list(map(int, input("Enter request queue: ").split(' ')))
-direction = input("Enter direction (left/right): ").lower()
-
-scheduler = DiskScheduler(initial_head_position, request_queue)
-
-results = {}
-results["FCFS"] = scheduler.fcfs()
-results["SSTF"] = scheduler.sstf()
-results["SCAN"] = scheduler.scan(direction)
-results["C-SCAN"] = scheduler.c_scan(direction)
-results["LOOK"] = scheduler.look(direction)
-results["C-LOOK"] = scheduler.c_look(direction)
-
-print("Results:")
-for algorithm, (seek_operations, total_distance, seek_sequence) in results.items():
-    print(f"\n{algorithm}:")
-    print("Total number of seek operations:", seek_operations)
-    print("Total distance traveled:", total_distance)
-    print("Seek sequence:", seek_sequence)
-
-    # Plot seek sequence
-    plot_seek_sequence(algorithm, seek_sequence, total_distance)
 
