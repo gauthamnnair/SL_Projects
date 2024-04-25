@@ -4,15 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulation Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width:90%; /* Adjust as needed */
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Add some space between containers */
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
     <h1>Simulation Results</h1>
     {% for algorithm, (seek_operations, total_distance, seek_sequence) in results.items() %}
+    <div class="container">
         <h2>{{ algorithm }}</h2>
         <p>Total number of seek operations: {{ seek_operations }}</p>
         <p>Total distance traveled: {{ total_distance }}</p>
         <p>Seek sequence: {{ seek_sequence }}</p>
         <img src="static/{{ algorithm }}_seek_sequence.png" alt="{{ algorithm }} Seek Sequence">
+    </div>
     {% endfor %}
 </body>
 </html>
