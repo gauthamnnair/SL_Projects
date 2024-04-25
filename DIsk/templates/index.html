@@ -4,6 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disk Scheduling Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+            vertical-align: middle;
+            margin-bottom: 5px; /* Adjust this margin */
+        }
+
+        input[type="radio"] + label {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Disk Scheduling Simulation</h1>
@@ -12,8 +72,15 @@
         <input type="number" name="initial_head_position" id="initial_head_position" required><br><br>
         <label for="request_queue">Request Queue (space-separated):</label>
         <input type="text" name="request_queue" id="request_queue" required><br><br>
-        <label for="direction">Direction (left/right):</label>
-        <input type="text" name="direction" id="direction" required><br><br>
+        <label>Direction:</label>
+        <div>
+            <input type="radio" id="left" name="direction" value="left" required>
+            <label for="left">Left</label>
+        </div>
+        <div>
+            <input type="radio" id="right" name="direction" value="right">
+            <label for="right">Right</label>
+        </div><br>
         <input type="submit" value="Simulate">
     </form>
 </body>
