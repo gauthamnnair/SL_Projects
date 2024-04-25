@@ -12,15 +12,22 @@
             padding: 0;
         }
 
-        .container {
-            width:90%; /* Adjust as needed */
+        .main-container {
+            max-width: ; /* Adjust as needed */
             margin: 0 auto;
-            padding: 40px;
+            padding: 20px;
+        }
+
+        .result-container {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px; /* Add some space between containers */
-            text-align: center;
+            padding: 20px;
+        }
+
+        .result-content {
+            text-align: left;
         }
 
         h1 {
@@ -44,15 +51,19 @@
 </head>
 <body>
     <h1>Simulation Results</h1>
-    {% for algorithm, (seek_operations, total_distance, seek_sequence) in results.items() %}
-    <div class="container">
-        <h2>{{ algorithm }}</h2>
-        <p>Total number of seek operations: {{ seek_operations }}</p>
-        <p>Total distance traveled: {{ total_distance }}</p>
-        <p>Seek sequence: {{ seek_sequence }}</p>
-        <img src="static/{{ algorithm }}_seek_sequence.png" alt="{{ algorithm }} Seek Sequence">
+    <div class="main-container">
+        {% for algorithm, (seek_operations, total_distance, seek_sequence) in results.items() %}
+        <div class="result-container">
+            <h2>{{ algorithm }}</h2>
+            <div class="result-content">
+                <p>Total number of seek operations: {{ seek_operations }}</p>
+                <p>Total distance traveled: {{ total_distance }}</p>
+                <p>Seek sequence: {{ seek_sequence }}</p>
+                <img src="static/{{ algorithm }}_seek_sequence.png" alt="{{ algorithm }} Seek Sequence">
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </body>
 </html>
 
