@@ -120,7 +120,7 @@ class DiskScheduler:
 def plot_seek_sequence(algorithm, seek_sequence, total_distance):
     plt.figure(figsize=(10, 6))
     plt.plot(seek_sequence, range(len(seek_sequence)), color="green", marker='o', markersize=5, linewidth=2)
-    plt.title(f"{algorithm} Seek Sequence")
+    plt.title(f"{algorithm.upper()} Seek Sequence")
     plt.xlabel("Cylinder")
     plt.ylabel("Request")
     plt.text(172.5, -8.85, f"Total distance traveled: {total_distance} cylinders", horizontalalignment='center', verticalalignment='center', fontsize=12)

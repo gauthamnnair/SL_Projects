@@ -27,27 +27,18 @@
 
         label {
             display: block;
+            margin-bottom: 10px;
         }
 
         input[type="number"],
-        input[type="text"] {
+        input[type="text"],
+        select {
             width: calc(100% - 20px);
             padding: 8px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 3px;
             box-sizing: border-box;
-        }
-
-        input[type="radio"] {
-            margin-right: 5px;
-            vertical-align: middle;
-            margin-bottom: 5px; /* Adjust this margin */
-        }
-
-        input[type="radio"] + label {
-            display: inline-block;
-            vertical-align: middle;
         }
 
         input[type="submit"] {
@@ -63,6 +54,10 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        .toggle-label {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -72,15 +67,20 @@
         <input type="number" name="initial_head_position" id="initial_head_position" required><br><br>
         <label for="request_queue">Request Queue (space-separated):</label>
         <input type="text" name="request_queue" id="request_queue" required><br><br>
-        <label>Direction:</label>
-        <div>
-            <input type="radio" id="left" name="direction" value="left" required>
-            <label for="left">Left</label>
-        </div>
-        <div>
-            <input type="radio" id="right" name="direction" value="right">
-            <label for="right">Right</label>
-        </div><br>
+        <label>Select Direction:</label>
+        <label class="toggle-label"><input type="radio" name="direction" value="left" checked> Left</label>
+        <label class="toggle-label"><input type="radio" name="direction" value="right"> Right</label><br><br>
+
+        <label>Select Algorithm(s):</label><br>
+        <select name="algorithm">
+            <option value="all" selected>All</option>
+            <option value="fcfs">FCFS</option>
+            <option value="sstf">SSTF</option>
+            <option value="scan">SCAN</option>
+            <option value="c_scan">C-SCAN</option>
+            <option value="look">LOOK</option>
+            <option value="c_look">C-LOOK</option>
+        </select><br><br>
         <input type="submit" value="Simulate">
     </form>
 </body>
